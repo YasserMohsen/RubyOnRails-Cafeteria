@@ -1,17 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>RubyOnRailsCafeteria</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>RubyOnRailsCafeteria</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
+<body>
+
+<div class="ui attached stackable menu">
+  <div class="ui container">
+    <a href="#" class="header item header-logo">
+      Cafeteria
+    </a>
+    <div class="right item">
+      <form action="#">
+        <div class="ui input">
+          <input type="text" name="query" placeholder="Search...">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="ui container segment">
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
   <%= yield %>
-  </body>
+</div>
+
+</body>
 </html>
