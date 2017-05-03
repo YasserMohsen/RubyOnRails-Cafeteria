@@ -38,6 +38,7 @@ gem 'jbuilder', '~> 2.5'
 #our gems live here ya zamail
 gem 'semantic-ui-sass', git: 'https://github.com/doabit/semantic-ui-sass.git'
 gem 'devise'
+gem 'paperclip', git: 'git://github.com/thoughtbot/paperclip.git'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

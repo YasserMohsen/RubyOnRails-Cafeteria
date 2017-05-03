@@ -8,6 +8,7 @@
 <table class="ui table">
   <thead>
   <tr>
+    <th>Image</th>
     <th>Name</th>
     <th>Price</th>
     <th>Availability</th>
@@ -19,6 +20,11 @@
   <tbody>
   <% if @products.each do |product| %>
       <tr>
+        <td>
+          <% if product.picture %>
+              <%= link_to image_tag(product.picture.url(:thumb)), product.picture.url, target: '_blank' %>
+          <% end %>
+        </td>
         <td>
           <strong><%= product.name %></strong>
         </td>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170503050128) do
+ActiveRecord::Schema.define(version: 20170503162503) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -42,11 +42,15 @@ ActiveRecord::Schema.define(version: 20170503050128) do
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.float    "price",        limit: 24
+    t.float    "price",                limit: 24
     t.boolean  "availability"
     t.integer  "category_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
   end
 
@@ -71,8 +75,14 @@ ActiveRecord::Schema.define(version: 20170503050128) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.integer  "room_id"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["room_id"], name: "index_users_on_room_id", using: :btree
   end
 
   add_foreign_key "order_products", "orders"
@@ -80,4 +90,5 @@ ActiveRecord::Schema.define(version: 20170503050128) do
   add_foreign_key "orders", "rooms"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
+  add_foreign_key "users", "rooms"
 end

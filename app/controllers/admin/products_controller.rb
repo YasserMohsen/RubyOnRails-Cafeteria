@@ -16,6 +16,7 @@ class Admin::ProductsController < Admin::AdminController
   end
 
   def create
+    # render plain: params[:product].inspect
     @product = Product.new(product_params)
     if @product.save
       redirect_to admin_products_path, notice: 'Product was successfully created.'
@@ -44,6 +45,6 @@ class Admin::ProductsController < Admin::AdminController
     end
 
     def product_params
-      params.require(:product).permit(:name, :price, :availability, :category_id)
+      params.require(:product).permit(:name, :price, :availability, :picture, :category_id)
     end
 end
