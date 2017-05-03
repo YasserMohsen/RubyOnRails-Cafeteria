@@ -4,17 +4,15 @@
   <title>RubyOnRailsCafeteria</title>
   <%= csrf_meta_tags %>
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body>
+<body class="<%= controller.controller_name%>">
 
 <div class="ui attached stackable menu">
   <div class="ui container">
-    <a href="#" class="header item header-logo">
-      Cafeteria
-    </a>
+    <%= link_to "Cafeteria",root_path,{:class=>"header item header-logo"} %>
     <div class="right item">
       <form action="#">
         <div class="ui input">
@@ -25,10 +23,14 @@
   </div>
 </div>
 
-<div class="ui container segment">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+<% if notice || alert %>
+    <div class="ui container red inverted segment">
+      <% if notice %><p><%= notice %></p><% end %>
+      <% if alert %><p><%= alert %></p><% end %>
+    </div>
+<% end %>
 
+<div class="ui container segment">
   <%= yield %>
 </div>
 

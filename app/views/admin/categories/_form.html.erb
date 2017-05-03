@@ -1,0 +1,12 @@
+<%= form_for([:admin, category], :html => {:class => "ui large form error"}) do |f| %>
+
+    <%= render 'layouts/error_messages', object: category %>
+
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <%= f.submit :class => "ui small blue submit button" %>
+
+<% end %>
