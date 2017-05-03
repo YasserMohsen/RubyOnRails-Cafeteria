@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2017-05-03 06:50:01
+  status: MyString
+  notes: MyText
+  checked: false
+
+two:
+  date: 2017-05-03 06:50:01
+  status: MyString
+  notes: MyText
+  checked: false
