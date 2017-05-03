@@ -12,6 +12,7 @@ class Admin::ProductsController < Admin::AdminController
   end
 
   def edit
+    semantic_breadcrumb @product.name
   end
 
   def create

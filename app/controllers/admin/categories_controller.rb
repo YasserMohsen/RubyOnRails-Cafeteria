@@ -12,6 +12,7 @@ class Admin::CategoriesController < Admin::AdminController
   end
 
   def edit
+    semantic_breadcrumb @category.name
   end
 
   def create

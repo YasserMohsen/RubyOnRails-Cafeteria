@@ -1,4 +1,9 @@
-<h1>Rooms</h1>
+<h1>
+  Rooms
+  <%= link_to new_admin_room_path, class: "ui green small labeled icon add button right floating" do %>
+      <i class="add icon"></i> New Room
+  <% end %>
+</h1>
 
 <table class="ui table">
   <thead>
@@ -34,7 +39,5 @@
 </table>
 
 
-<%= link_to new_admin_room_path, class: "ui green mini labeled icon add button" do %>
-    <i class="add icon"></i> New Room
-<% end %>
+
 

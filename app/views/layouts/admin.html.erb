@@ -40,10 +40,11 @@
     <% end %>
 
     <%= link_to admin_products_path, class: "item" do %>
-        <i class="browser icon"></i> Products
+        <i class="shopping basket icon"></i> Products
+    <% end %>
 
     <%= link_to admin_rooms_path, class: "item" do %>
-        <i class="browser icon"></i> Rooms
+        <i class="text telephone icon"></i> Rooms
     <% end %>
 
     <div class="right menu">
@@ -79,9 +80,8 @@
 
 <script>
     $(document).ready(function () {
-        $('.ui.dropdown')
-            .dropdown()
-        ;
+        $('.ui.dropdown').dropdown();
+        $('.ui.checkbox').checkbox();
     });
 </script>
 

@@ -12,6 +12,7 @@ class Admin::RoomsController < Admin::AdminController
   end
 
   def edit
+    semantic_breadcrumb @room.name
   end
 
   def create

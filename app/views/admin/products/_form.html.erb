@@ -6,19 +6,23 @@
       <%= f.label :name %>
       <%= f.text_field :name %>
     </div>
+
     <div class="field">
       <%= f.label :price %>
       <%= f.text_field :price %>
     </div>
-    <div class="field">
-      <%= f.label(:availability, "Available") %>
-      <%= f.check_box(:availability) %>
-    </div>
+
     <div class="field">
       <%= f.label :category %>
-      <%= f.collection_select(:category_id, Category.all,:id,:name, include_blank: false) %>
+      <%= f.collection_select(:category_id, Category.all, :id, :name, include_blank: false) %>
+    </div>
+
+    <div class="inline field">
+      <div class="ui toggle checkbox">
+        <%= f.check_box(:availability) %>
+        <%= f.label(:availability, "Available") %>
+      </div>
     </div>
 
     <%= f.submit :class => "ui small blue submit button" %>
-
 <% end %>
