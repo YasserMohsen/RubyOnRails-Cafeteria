@@ -19,7 +19,7 @@
     </div>
     <div class="user">
       <div class="ui inline labeled icon top right pointing dropdown" tabindex="0">
-        <%= image_tag "avatar-default.png", :class => "ui avatar image" %>
+        <%= image_tag current_user.avatar.url(:thumb), :class => "ui avatar image" %>
         <%= current_user.name %>
         <i class="dropdown icon"></i>
         <div class="menu" tabindex="-1">
@@ -32,7 +32,7 @@
   </header>
 
 
-  <div class="ui teal inverted menu fluid">
+  <div class="ui teal stackable inverted menu fluid">
     <%= link_to admin_path, class: "item" do %>
         <i class="icon block layout"></i> Dashboard
     <% end %>

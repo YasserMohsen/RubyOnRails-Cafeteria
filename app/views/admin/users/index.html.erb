@@ -5,18 +5,24 @@
   <% end %>
 </h1>
 
-<table class="ui table">
+<table class="ui stackable table">
   <thead>
   <tr>
-    <th>Name</th>
-    <th width="200"></th>
+    <th class="two wide">Avatar</th>
+    <th class="six wide">Name</th>
+    <th class="two wide">Room</th>
+    <th class="two wide">Ext.</th>
+    <th class="four wide"></th>
   </tr>
   </thead>
 
   <tbody>
   <% if @users.each do |user| %>
       <tr>
+        <td><%= image_tag user.avatar.url(:thumb) %></td>
         <td><strong><%= user.name %></strong></td>
+        <td><strong><%= user.room.name %></strong></td>
+        <td><strong><%= user.ext %></strong></td>
         <td>
           <div class="ui buttons mini">
             <%= link_to edit_admin_user_path(user), class: "ui button" do %>

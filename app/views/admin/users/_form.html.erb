@@ -22,11 +22,20 @@
       <%= f.collection_select(:room_id, Room.all, :id, :name, include_blank: false) %>
     </div>
 
+    <div class="field">
+      <%= f.label :ext %>
+      <%= f.text_field :ext %>
+    </div>
+
     <div class="inline field">
       <div class="ui toggle checkbox">
         <%= f.check_box(:is_admin) %>
         <%= f.label(:is_admin, "Admin?") %>
       </div>
+    </div>
+
+    <div class="field">
+      <%= f.file_field :avatar %>
     </div>
 
     <%= f.submit :class => "ui small blue submit button" %>
