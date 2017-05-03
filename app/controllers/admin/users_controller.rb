@@ -45,6 +45,6 @@ class Admin::UsersController < Admin::AdminController
     end
 
     def user_params
-      params.require(:user).permit(:name)
+      params.require(:user).permit(:name,:email,:password,:room_id,:is_admin)
     end
 end
