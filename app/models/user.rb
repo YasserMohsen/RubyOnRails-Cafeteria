@@ -5,4 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :orders
   belongs_to :room
+  has_attached_file :avatar
+  validates_attachment :avatar,
+                       content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
 end
