@@ -23,7 +23,7 @@
         <%= current_user.name %>
         <i class="dropdown icon"></i>
         <div class="menu" tabindex="-1">
-          <%= link_to destroy_user_session_path, :class => 'item' do  %>
+          <%= link_to destroy_user_session_path, :class => 'item', method: :delete, data: {confirm: 'Are you sure?'} do  %>
               <i class="sign out icon"></i> Logout
           <% end %>
         </div>
