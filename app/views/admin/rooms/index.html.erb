@@ -1,0 +1,40 @@
+<h1>Rooms</h1>
+
+<table class="ui table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th width="200"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if @rooms.each do |room| %>
+      <tr>
+        <td><strong><%= room.name %></strong></td>
+        <td>
+          <div class="ui buttons mini">
+            <%= link_to edit_admin_room_path(room), class: "ui button" do %>
+                <i class="edit icon"></i> Edit
+            <% end %>
+            <%= link_to admin_room_path(room), method: :delete, data: {confirm: 'Are you sure?'}, class: "ui button" do %>
+                <i class="trash icon"></i> Delete
+            <% end %>
+          </div>
+        </td>
+      </tr>
+  <% end.empty? %>
+      <tr>
+        <td colspan="2">
+          <strong>Nothing to show right now!!</strong>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<%= link_to new_admin_room_path, class: "ui green mini labeled icon add button" do %>
+    <i class="add icon"></i> New Room
+<% end %>
+
