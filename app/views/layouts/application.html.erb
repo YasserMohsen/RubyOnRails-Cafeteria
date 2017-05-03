@@ -15,6 +15,12 @@
     <%= link_to "Cafeteria", root_path, {:class => "header item header-logo"} %>
 
     <% if user_signed_in? %>
+        <%= link_to new_order_path, :class => 'item' do  %>
+            <i class="plus icon"></i> New Order
+        <% end %>
+        <%= link_to root_path, :class => 'item' do  %>
+            <i class="list icon"></i> My Orders
+        <% end %>
         <%= link_to destroy_user_session_path, :class => 'item', method: :delete, data: {confirm: 'Are you sure?'} do  %>
             <i class="users icon"></i> Logout
         <% end %>
@@ -28,12 +34,15 @@
   </div>
 </div>
 
-<% if notice || alert %>
+<% if notice %>
+    <div class="ui container green inverted segment">
+      <p><%= notice %></p>
+    </div>
+<% end %>
+
+<% if alert %>
     <div class="ui container red inverted segment">
-      <% if notice %><p><%= notice %></p>
-      <% end %>
-      <% if alert %><p><%= alert %></p>
-      <% end %>
+      <p><%= alert %></p>
     </div>
 <% end %>
 

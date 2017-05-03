@@ -32,7 +32,11 @@
           <strong><%= product.price %></strong>
         </td>
         <td>
-          <strong><%= product.availability %></strong>
+          <% if product.availability%>
+              <i class="large green checkmark icon"></i>
+          <% else %>
+              <i class="large red close icon"></i>
+          <% end %>
         </td>
         <td>
           <strong><%= product.category.name %></strong>

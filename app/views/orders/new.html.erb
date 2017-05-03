@@ -1,0 +1,53 @@
+<h2 class="ui header">
+  <i class="in cart icon"></i>
+  <div class="content">
+    New Order
+    <div class="sub header">Choose what you want, then click checkout</div>
+  </div>
+</h2>
+
+<div class="ui internally celled grid">
+  <div class="row">
+    <div class="six wide column">
+      <table class="ui very basic collapsing celled table">
+        <thead>
+        <tr>
+          <th>Employee</th>
+          <th>Correct Guesses</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>
+            <h4 class="ui image header">
+              <img src="/images/avatar2/small/lena.png" class="ui mini rounded image">
+              <div class="content">
+                Lena
+                <div class="sub header">Human Resources
+                </div>
+              </div>
+            </h4>
+          </td>
+          <td>
+            22
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="ten wide column">
+      <div class="ui pointing secondary menu">
+        <% @categories.each.with_index do |category, index| %>
+            <a class="item <% if index == 0 %>active<% end %>" data-tab="<%= category.id %>"><%= category.name %></a>
+        <% end %>
+      </div>
+      <% @categories.each.with_index do |category, index| %>
+          <div class="ui bottom attached <% if index == 0 %>active<% end %> tab" data-tab="<%= category.id %>">
+            <% category.products.each do |product| %>
+                <%= product.name %>
+            <% end %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
