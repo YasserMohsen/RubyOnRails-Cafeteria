@@ -1,0 +1,43 @@
+<h1>
+  Users
+  <%= link_to new_admin_user_path, class: "ui green small labeled icon add button right floating" do %>
+      <i class="add icon"></i> New User
+  <% end %>
+</h1>
+
+<table class="ui table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th width="200"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if @users.each do |user| %>
+      <tr>
+        <td><strong><%= user.name %></strong></td>
+        <td>
+          <div class="ui buttons mini">
+            <%= link_to edit_admin_user_path(user), class: "ui button" do %>
+                <i class="edit icon"></i> Edit
+            <% end %>
+            <%= link_to admin_user_path(user), method: :delete, data: {confirm: 'Are you sure?'}, class: "ui button" do %>
+                <i class="trash icon"></i> Delete
+            <% end %>
+          </div>
+        </td>
+      </tr>
+  <% end.empty? %>
+      <tr>
+        <td colspan="2">
+          <strong>Nothing to show right now!!</strong>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+
+

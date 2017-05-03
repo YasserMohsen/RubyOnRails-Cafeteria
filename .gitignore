@@ -43,4 +43,4 @@ bower.json
 
 .idea
 
-config/database.yml
+database.yml
