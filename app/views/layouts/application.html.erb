@@ -15,7 +15,7 @@
     <%= link_to "Cafeteria", root_path, {:class => "header item header-logo"} %>
 
     <% if user_signed_in? %>
-        <%= link_to destroy_user_session_path, :class => 'item' do  %>
+        <%= link_to destroy_user_session_path, :class => 'item', method: :delete, data: {confirm: 'Are you sure?'} do  %>
             <i class="users icon"></i> Logout
         <% end %>
     <% else %>
