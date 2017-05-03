@@ -8,25 +8,32 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body class="<%= controller.controller_name%>">
+<body class="<%= controller.controller_name %>">
 
 <div class="ui attached stackable menu">
   <div class="ui container">
-    <%= link_to "Cafeteria",root_path,{:class=>"header item header-logo"} %>
-    <div class="right item">
-      <form action="#">
-        <div class="ui input">
-          <input type="text" name="query" placeholder="Search...">
-        </div>
-      </form>
-    </div>
+    <%= link_to "Cafeteria", root_path, {:class => "header item header-logo"} %>
+
+    <% if user_signed_in? %>
+        <%= link_to destroy_user_session_path, :class => 'item' do  %>
+            <i class="users icon"></i> Logout
+        <% end %>
+    <% else %>
+        <%= link_to new_user_session_path, :class => 'right item' do  %>
+            <i class="users icon"></i> Login
+         <% end %>
+    <% end %>
+    </p>
+
   </div>
 </div>
 
 <% if notice || alert %>
     <div class="ui container red inverted segment">
-      <% if notice %><p><%= notice %></p><% end %>
-      <% if alert %><p><%= alert %></p><% end %>
+      <% if notice %><p><%= notice %></p>
+      <% end %>
+      <% if alert %><p><%= alert %></p>
+      <% end %>
     </div>
 <% end %>
 

@@ -1,0 +1,34 @@
+<%= form_for([:admin, user], :html => {:class => "ui large form error"}) do |f| %>
+
+    <%= render 'layouts/error_messages', object: user %>
+
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+
+    <div class="field">
+      <%= f.label :room %>
+      <%= f.collection_select(:room_id, Room.all, :id, :name, include_blank: false) %>
+    </div>
+
+    <div class="inline field">
+      <div class="ui toggle checkbox">
+        <%= f.check_box(:is_admin) %>
+        <%= f.label(:is_admin, "Admin?") %>
+      </div>
+    </div>
+
+    <%= f.submit :class => "ui small blue submit button" %>
+
+<% end %>
