@@ -8,7 +8,7 @@
   <%= javascript_include_tag 'admin', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body>
+<body class="<%= controller.controller_name%>">
 
 <div class="ui container">
   <header>
@@ -31,6 +31,10 @@
 
 
   <div class="ui teal inverted menu fluid">
+    <%= link_to admin_path, class: "item" do %>
+        <i class="icon block layout"></i> Dashboard
+    <% end %>
+
     <%= link_to admin_categories_path, class: "item" do %>
         <i class="browser icon"></i> Categories
     <% end %>
@@ -56,9 +60,11 @@
     </div>
 <% end %>
 
-<div class="ui container segment">
-  <%= semantic_breadcrumbs %>
-</div>
+<% if controller.controller_name != "dashboard" %>
+  <div class="ui container segment">
+    <%= semantic_breadcrumbs %>
+  </div>
+<% end %>
 
 <div class="ui container segment">
   <%= yield %>

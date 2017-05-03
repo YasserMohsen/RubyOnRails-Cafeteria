@@ -20,6 +20,7 @@ class Admin::CategoriesController < Admin::AdminController
     if @category.save
       redirect_to admin_categories_path, notice: 'Category was successfully created.'
     else
+      semantic_breadcrumb "Create", new_admin_category_pathrails
       render :new
     end
   end

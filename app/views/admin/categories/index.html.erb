@@ -1,16 +1,15 @@
-
 <h1>Categories</h1>
 
 <table class="ui table">
   <thead>
-    <tr>
-      <th>Name</th>
-      <th width="200"></th>
-    </tr>
+  <tr>
+    <th>Name</th>
+    <th width="200"></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @categories.each do |category| %>
+  <% if @categories.each do |category| %>
       <tr>
         <td><strong><%= category.name %></strong></td>
         <td>
@@ -18,13 +17,19 @@
             <%= link_to edit_admin_category_path(category), class: "ui button" do %>
                 <i class="edit icon"></i> Edit
             <% end %>
-            <%= link_to admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: "ui button" do %>
+            <%= link_to admin_category_path(category), method: :delete, data: {confirm: 'Are you sure?'}, class: "ui button" do %>
                 <i class="trash icon"></i> Delete
             <% end %>
           </div>
         </td>
       </tr>
-    <% end %>
+  <% end.empty? %>
+      <tr>
+        <td colspan="2">
+          <strong>Nothing to show right now!!</strong>
+        </td>
+      </tr>
+  <% end %>
   </tbody>
 </table>
 
