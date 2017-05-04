@@ -22,15 +22,15 @@
             </tr>
             </thead>
             <tbody id="cart">
-              <tr>
-                <td colspan="4">Empty ...</td>
-              </tr>
+            <tr>
+              <td colspan="4">Empty ...</td>
+            </tr>
             </tbody>
           </table>
 
           <div class="field">
             <%= f.label :notes %>
-            <%= f.text_area :notes , rows: 3 %>
+            <%= f.text_area :notes, rows: 3 %>
           </div>
 
           <div class="field">
@@ -38,10 +38,11 @@
             <%= f.collection_select(:room_id, Room.all, :id, :name, include_blank: false) %>
           </div>
 
-          <div class="ui right aligned">
-            <h2>EGP <span id="total">0.00</span></h2>
-            <%= f.submit :class => "ui small blue submit button" %>
-          </div>
+          <h2>EGP <span id="total">0.00</span></h2>
+
+          <%= render 'layouts/error_messages', object: @order %>
+
+          <%= f.submit :class => "ui small blue submit button" %>
       <% end %>
     </div>
     <div class="ten wide column">

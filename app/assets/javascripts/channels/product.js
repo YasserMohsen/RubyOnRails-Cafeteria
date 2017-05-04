@@ -51,11 +51,12 @@ Cart.prototype.render = function () {
         html += "<tr><td colspan='4'>Empty ...</td></tr>";
     }else{
         for (var product in this.list) {
+            var hidden = "<input type='hidden' name='order[products][" + product +"]' value='" + this.list[product].quantity + "' />";
             html += "<tr>";
             html += "<td>" + this.list[product].product.name + "</td>";
             html += "<td>" + this.list[product].quantity + "</td>";
             html += "<td>" + this.list[product].product.price + "</td>";
-            html += "<td><i data-id='" + product +"' class='large remove red icon remove_line'></i></td>";
+            html += "<td><i data-id='" + product +"' class='large remove red icon remove_line'></i> " + hidden + "</td>";
             html += "</tr>";
         }
     }
@@ -72,7 +73,6 @@ App.product = App.cable.subscriptions.create("ProductChannel", {
         console.log("disconnected")
     },
     received: function (data) {
-        console.log(data)
         if (data.action === "create") {
             $("#category_" + data.product.category_id).append(data.html);
         } else if (data.action === "update") {
