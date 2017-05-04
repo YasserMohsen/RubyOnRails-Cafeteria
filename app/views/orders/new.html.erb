@@ -12,30 +12,19 @@
 
       <%= form_for(@order, :html => {:class => "ui small form error"}) do |f| %>
 
-          <table id="cart" class="ui very basic celled table">
+          <table class="ui very basic celled center aligned table">
             <thead>
             <tr>
               <th>Item</th>
-              <th>#</th>
+              <th>Quantity</th>
               <th>Price</th>
               <th>#</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-              <td>
-xx
-              </td>
-              <td>
-                <input type="number">
-              </td>
-              <td>
-
-              </td>
-              <td>
-                <i class="remove icon red"></i>
-              </td>
-            </tr>
+            <tbody id="cart">
+              <tr>
+                <td colspan="4">Empty ...</td>
+              </tr>
             </tbody>
           </table>
 
@@ -49,8 +38,10 @@ xx
             <%= f.collection_select(:room_id, Room.all, :id, :name, include_blank: false) %>
           </div>
 
-          <%= f.submit :class => "ui small blue submit button" %>
-
+          <div class="ui right aligned">
+            <h2>EGP <span id="total">0.00</span></h2>
+            <%= f.submit :class => "ui small blue submit button" %>
+          </div>
       <% end %>
     </div>
     <div class="ten wide column">
