@@ -1,0 +1,79 @@
+<h2 class="ui header">
+  <i class="in cart icon"></i>
+  <div class="content">
+    New Order
+    <div class="sub header">Choose what you want, then click checkout</div>
+  </div>
+</h2>
+
+<div class="ui internally celled grid">
+  <div class="row">
+    <div class="six wide column">
+
+      <%= form_for(@order, :html => {:class => "ui small form error"}) do |f| %>
+
+          <table id="cart" class="ui very basic celled table">
+            <thead>
+            <tr>
+              <th>Item</th>
+              <th>#</th>
+              <th>Price</th>
+              <th>#</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>
+xx
+              </td>
+              <td>
+                <input type="number">
+              </td>
+              <td>
+
+              </td>
+              <td>
+                <i class="remove icon red"></i>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+          <div class="field">
+            <%= f.label :notes %>
+            <%= f.text_area :notes , rows: 3 %>
+          </div>
+
+          <div class="field">
+            <%= f.label :room %>
+            <%= f.collection_select(:room_id, Room.all, :id, :name, include_blank: false) %>
+          </div>
+
+          <%= f.submit :class => "ui small blue submit button" %>
+
+      <% end %>
+    </div>
+    <div class="ten wide column">
+      <div class="ui pointing secondary menu">
+        <% @categories.each.with_index do |category, index| %>
+            <a class="item
+              <% if index == 0 %>active
+              <% end %>" data-tab="<%= category.id %>"><%= category.name %></a>
+        <% end %>
+      </div>
+      <% @categories.each.with_index do |category, index| %>
+          <div class="ui bottom attached
+            <% if index == 0 %>active
+            <% end %> tab" data-tab="<%= category.id %>">
+
+            <div class="ui four column stackable internally celled grid">
+              <div id="category_<%= category.id %>" class="row">
+                <%= render partial: "product", collection: category.products %>
+              </div>
+            </div>
+
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

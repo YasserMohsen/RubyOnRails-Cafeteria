@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users, only: :sessions
 
   get 'home/index'
+  resources :orders, only: [:index, :new, :create]
+
   root to: "home#index"
 
   namespace 'admin' do
@@ -11,4 +13,6 @@ Rails.application.routes.draw do
     resources :categories, except: :show
     resources :rooms, except: :show
   end
+
+  mount ActionCable.server => '/cable'
 end
