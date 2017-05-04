@@ -9,43 +9,69 @@
 <div class="ui internally celled grid">
   <div class="row">
     <div class="six wide column">
-      <table class="ui very basic collapsing celled table">
-        <thead>
-        <tr>
-          <th>Employee</th>
-          <th>Correct Guesses</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>
-            <h4 class="ui image header">
-              <img src="/images/avatar2/small/lena.png" class="ui mini rounded image">
-              <div class="content">
-                Lena
-                <div class="sub header">Human Resources
-                </div>
-              </div>
-            </h4>
-          </td>
-          <td>
-            22
-          </td>
-        </tr>
-        </tbody>
-      </table>
+
+      <%= form_for(@order, :html => {:class => "ui small form error"}) do |f| %>
+
+          <table id="cart" class="ui very basic celled table">
+            <thead>
+            <tr>
+              <th>Item</th>
+              <th>#</th>
+              <th>Price</th>
+              <th>#</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>
+xx
+              </td>
+              <td>
+                <input type="number">
+              </td>
+              <td>
+
+              </td>
+              <td>
+                <i class="remove icon red"></i>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+          <div class="field">
+            <%= f.label :notes %>
+            <%= f.text_area :notes , rows: 3 %>
+          </div>
+
+          <div class="field">
+            <%= f.label :room %>
+            <%= f.collection_select(:room_id, Room.all, :id, :name, include_blank: false) %>
+          </div>
+
+          <%= f.submit :class => "ui small blue submit button" %>
+
+      <% end %>
     </div>
     <div class="ten wide column">
       <div class="ui pointing secondary menu">
         <% @categories.each.with_index do |category, index| %>
-            <a class="item <% if index == 0 %>active<% end %>" data-tab="<%= category.id %>"><%= category.name %></a>
+            <a class="item
+              <% if index == 0 %>active
+              <% end %>" data-tab="<%= category.id %>"><%= category.name %></a>
         <% end %>
       </div>
       <% @categories.each.with_index do |category, index| %>
-          <div class="ui bottom attached <% if index == 0 %>active<% end %> tab" data-tab="<%= category.id %>">
-            <% category.products.each do |product| %>
-                <%= product.name %>
-            <% end %>
+          <div class="ui bottom attached
+            <% if index == 0 %>active
+            <% end %> tab" data-tab="<%= category.id %>">
+
+            <div class="ui four column stackable internally celled grid">
+              <div id="category_<%= category.id %>" class="row">
+                <%= render partial: "product", collection: category.products %>
+              </div>
+            </div>
+
           </div>
       <% end %>
     </div>

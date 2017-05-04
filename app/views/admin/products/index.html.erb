@@ -22,7 +22,7 @@
       <tr>
         <td>
           <% if product.picture %>
-              <%= image_tag product.picture.url(:thumb) %>
+              <%= image_tag product.picture.url(:thumb),:class => "ui mini image" %>
           <% end %>
         </td>
         <td>

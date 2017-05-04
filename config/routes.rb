@@ -13,4 +13,6 @@ Rails.application.routes.draw do
     resources :categories, except: :show
     resources :rooms, except: :show
   end
+
+  mount ActionCable.server => '/cable'
 end
