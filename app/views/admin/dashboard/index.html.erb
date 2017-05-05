@@ -38,11 +38,9 @@
             </td>
             <td>
               <button class="ui
-              <% if order.status == 'received' %> red <% end %>
-              large button fluid">
-                <% if order.status == 'received' %>Start
-                <% else %>Finish
-                <% end %>
+                <% if order.status == 'received' %> red <% else %> green <% end %>
+                large button fluid">
+                <% if order.status == 'received' %> Start <% else %> Finish <% end %>
               </button>
             </td>
           </tr>
@@ -56,7 +54,7 @@
             <%= image_tag product.picture.url(), class: "ui fluid image" %>
             <br/>
             <h2 class="ui header center aligned">
-              <%= product.amount %>
+              <%= OrderProduct.where(order_id: order.id, product_id: product.id).first.amount %>
             </h2>
           </div>
           <% end %>
@@ -64,7 +62,7 @@
       </div>
       <div class="extra content">
     <span class="ui header right floated">
-      Total Cost: 60 LE
+      Total Cost: <%= order.get_total %>
     </span>
       </div>
     </div>
