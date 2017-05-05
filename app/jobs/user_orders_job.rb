@@ -3,6 +3,6 @@ class UserOrdersJob < ApplicationJob
 
   def perform(data)
     # Do something later
-     ActionCable.server.broadcast 'order_channel', data: data 
+     ActionCable.server.broadcast 'order_channel', data: data
   end
 end
