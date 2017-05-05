@@ -3,19 +3,15 @@ class Admin::ChecksController < Admin::AdminController
 
   def index
     @data = {}
-
-    @users = User.includes(:orders => :products).all
-
-    @users.each do |user|
+    User.includes(:orders => :products).all.each do |user|
+      total = 0
+      orders = {}
       user.orders.each do |order|
-        puts "total"
-        puts order.get_total
-        order.products.each do |product|
-          puts "name"
-          puts product.name.inspect
-        end
+        orders[order.id] = order
+        total += order.get_total.to_i
       end
+      @data[user.id] = {user: user, total: total, orders: orders}
     end
-
+    puts @data.inspect
   end
 end

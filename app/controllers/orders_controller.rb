@@ -34,10 +34,13 @@ class OrdersController < ApplicationController
       @order.errors.add(:base, :not_valid, message: "Please select at least one product")
     end
 
-    if !@order.errors.any? && @order.save
-      params[:order][:products].each do |product_id, amount|
-        @product = OrderProduct.new(order_id: @order.id, product_id: product_id, amount: amount)
-        @product.save
+    if !@order.errors.any?
+      Order.transaction do
+        @order.save!
+        params[:order][:products].each do |product_id, amount|
+              @product = OrderProduct.new(order_id: @order.id, product_id: product_id, amount: amount)
+              @product.save!
+        end
       end
       redirect_to root_path, notice: 'Order was successfully created.'
     else

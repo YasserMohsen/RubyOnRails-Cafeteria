@@ -1,0 +1,7 @@
+<div class="column">
+  <%= image_tag product.picture.url(), class: "ui fluid image" %>
+  <br/>
+  <h2 class="ui header center aligned">
+    <%= OrderProduct.where(order_id: order.id, product_id: product.id).first.amount %>
+  </h2>
+</div>
