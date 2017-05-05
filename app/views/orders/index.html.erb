@@ -27,7 +27,27 @@
           <%=order.created_at%>
         </div>
         <div class="content">
-          <p class="transition hidden">order details</p>
+          <div class="transition hidden">
+            <%i=0%>
+            <div class="ui fluid card">
+              <div class="content">
+                <div class="ui equal width grid">
+            <%for product in @products[order.id]%>
+            <div class="column">
+                <%= product.price %>LE
+                <br>
+          <%= image_tag product.picture.url(:thumb), :class => "ui avatar image" %>
+                    <br>
+          <%= product.name %>
+               <br>
+                <%= @prodamounts[order.id][i] %>
+                <%i+=1%>
+                </div>
+          <%end%>
+          </div>
+        </div>
+          </div>
+
         </div>
 
 
@@ -38,15 +58,25 @@
       <td><%=order.status%></td>
       <td><%=@costs[order.id]%> EGP</td>
       <td>
-        <%if order.status=="processing"%>
+        <%if order.status=="processing" || order.status=="received" %>
         <a class="item" href="#">Cancel</a>
         <%end%>
       </td>
 
     </tr>
-    <%for product in @products[order.id]%>
-    <%=product.name%>
-    <%end%>
     <%end%>
   </tbody>
 </table>
+<div class="item">
+<div class="right floated item">
+Total: <%=@sum%>
+  <div>
+</div>
+
+
+<script type="text/javascript">
+    $(function(){
+        $('.ui.accordion')
+          .accordion();
+    })
+</script>
