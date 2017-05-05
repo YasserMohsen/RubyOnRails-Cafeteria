@@ -3,10 +3,10 @@ Rails.application.routes.draw do
 
   devise_for :users, only: :sessions
 
-  get 'home/index'
+  get 'orders/index'
   resources :orders, only: [:index, :new, :create]
 
-  root to: "home#index"
+  root to: "orders#index"
 
   namespace 'admin' do
     match "/", to: "dashboard#index", via: [:get]

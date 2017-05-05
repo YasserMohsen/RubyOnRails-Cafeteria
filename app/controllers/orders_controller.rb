@@ -1,5 +1,20 @@
 class OrdersController < ApplicationController
   def index
+    # @orders=Order.where(:user_id=>current_user.id)
+    @orders=Order.where(user_id:current_user.id)
+
+    @costs=Hash.new
+    @products=Hash.new
+    @sum=0
+    Array(@orders).each do |order|
+        total=0
+        total=order.get_total
+        prods=order.get_products
+        @costs[order.id]=total
+        @products[order.id]=prods
+    end
+
+
   end
 
   def new

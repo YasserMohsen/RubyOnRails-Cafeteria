@@ -4,6 +4,8 @@ class Order < ApplicationRecord
   has_many :order_products, :dependent => :destroy
   has_many :products, through: :order_products
 
+  after_update_commit { UserOrdersJob.perform_later self }
+
   after_initialize :set_defaults, unless: :persisted?
 
   def set_defaults
@@ -13,6 +15,10 @@ class Order < ApplicationRecord
 
   def get_total
     self.products.sum("amount * price").inspect
+  end
+
+  def get_products
+    self.products
   end
 
 end
