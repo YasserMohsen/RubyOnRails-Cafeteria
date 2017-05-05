@@ -487,3 +487,7 @@ footer {
   color: #a0a0a0;
   line-height: 24px;
 }
+
+.ui.accordion tbody.ui.content.active {
+  display: table-row-group;
+}
