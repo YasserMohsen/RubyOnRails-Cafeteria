@@ -22,4 +22,13 @@ class Order < ApplicationRecord
     self.products
   end
 
+  def get_amounts
+    amounts=Array.new
+    self.order_products.includes(:product).each do |prod|
+
+      amounts.push(prod.amount)
+    end
+    return amounts
+  end
+
 end
