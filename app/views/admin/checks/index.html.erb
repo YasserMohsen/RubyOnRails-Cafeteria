@@ -1,0 +1,30 @@
+<h1>
+  Checks
+</h1>
+
+<table class="ui table fluid accordion">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Total Amount</th>
+    </tr>
+  </thead>
+  <% if @users.each do |user| %>
+  <tbody class="ui title">
+    <tr>
+      <td><i class="dropdown icon"></i> <%= user.name %></td>
+      <td>2</td>
+    </tr>
+  </tbody>
+  <tbody class="ui content">
+    <tr>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+  <% end.empty? %>
+      <tr>
+        <td colspan="2"><strong>Nothing to show right now!!</strong></td>
+      </tr>
+  <% end %>
+</table>
