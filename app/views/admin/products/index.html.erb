@@ -32,11 +32,9 @@
           <strong><%= product.price %></strong>
         </td>
         <td>
-          <% if product.availability%>
-              <i class="large green checkmark icon"></i>
-          <% else %>
-              <i class="large red close icon"></i>
-          <% end %>
+          <div class="ui toggle checkbox">
+            <input id="rr" name="availability" type="checkbox" <% if product.availability %> checked <% end %>>
+          </div>
         </td>
         <td>
           <strong><%= product.category.name %></strong>
@@ -61,7 +59,12 @@
   <% end %>
   </tbody>
 </table>
-
-
-
-
+<script type="text/javascript">
+$(function(){
+  $('#rr').checkbox({
+    onchange: function(){
+      console.log("ccc")
+    }
+  });
+})
+</script>
