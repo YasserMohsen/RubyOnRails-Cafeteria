@@ -44,15 +44,9 @@
       </td>
 
     </tr>
-
+    <%for product in @products[order.id]%>
+    <%=product.name%>
+    <%end%>
     <%end%>
   </tbody>
 </table>
-<%for product in @products%>
-<%for pinfo in product%>
-<%=pinfo.name%>
-<%=pinfo.amount%>
-<%=pinfo.price%>
-<%end%>
-<br>
-<%end%>
