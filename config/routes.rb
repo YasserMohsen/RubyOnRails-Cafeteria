@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'checks/index'
+
   devise_for :users, only: :sessions
 
   get 'orders/index'
@@ -8,6 +10,7 @@ Rails.application.routes.draw do
 
   namespace 'admin' do
     match "/", to: "dashboard#index", via: [:get]
+    match "/checks", to: "checks#index", via: [:get]
     resources :users, except: :show
     resources :products, except: :show
     resources :categories, except: :show

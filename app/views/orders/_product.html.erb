@@ -7,7 +7,7 @@
     <div class="image">
       <%= image_tag product.picture.url(:thumb), :class => "ui mini image" %>
     </div>
-    <button class="ui bottom attached button add-to-cart" data-id="<%= product.id %>" data-category_id="<%= product.category_id %>" data-price="<%= product.price %>">
+    <button class="ui bottom attached button add-to-cart" data-id="<%= product.id %>" data-name="<%= product.name %>" data-category_id="<%= product.category_id %>" data-price="<%= product.price %>">
       <i class="add icon"></i>
       Add to cart
     </button>

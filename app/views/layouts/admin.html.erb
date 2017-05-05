@@ -37,6 +37,10 @@
         <i class="icon block layout"></i> Dashboard
     <% end %>
 
+    <%= link_to admin_checks_path, class: "item" do %>
+        <i class="icon calendar"></i> Checks
+    <% end %>
+
     <%= link_to admin_categories_path, class: "item" do %>
         <i class="browser icon"></i> Categories
     <% end %>
@@ -50,7 +54,7 @@
     <% end %>
 
     <%= link_to admin_users_path, class: "item" do %>
-        <i class="user icon"></i> Users
+        <i class="users icon"></i> Users
     <% end %>
 
     <div class="right menu">
@@ -88,7 +92,7 @@
     $(document).ready(function () {
         $('.ui.dropdown').dropdown();
         $('.ui.checkbox').checkbox();
-        $('.menu .item').tab();
+        $('.ui.accordion').accordion();
     });
 </script>
 

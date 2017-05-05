@@ -3,7 +3,7 @@ class ProductBroadcastJob < ApplicationJob
 
   def perform(product, action)
     response = {action: action, product: product}
-    if action == "create"
+    unless action == "destroy"
       response[:html] = render_product(product)
     end
     ActionCable.server.broadcast 'product_channel', response
