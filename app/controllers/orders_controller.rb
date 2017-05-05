@@ -31,13 +31,18 @@ class OrdersController < ApplicationController
     end
 
     if !@order.errors.any?
-      Order.transaction do
-        @order.save!
-        params[:order][:products].each do |product_id, amount|
-              @product = OrderProduct.new(order_id: @order.id, product_id: product_id, amount: amount)
-              @product.save!
+        # @order.save
+        # params[:order][:products].each do |product_id, amount|
+        #     @product = OrderProduct.new(order_id: @order.id, product_id: product_id, amount: amount)
+        #     @product.save!
+        #     end
+        Order.transaction do
+          @order.save!
+          params[:order][:products].each do |product_id, amount|
+                @product = OrderProduct.new(order_id: @order.id, product_id: product_id, amount: amount)
+                @product.save!
+          end
         end
-      end
       redirect_to root_path, notice: 'Order was successfully created.'
     else
       @categories = Category.all
@@ -46,10 +51,22 @@ class OrdersController < ApplicationController
 
   end
 
+  def update
+    @order = Order.find(params[:id])
+    @order.status = params[:status]
+    if @order.save
+      render json: { case: "ok", status: @order.status}
+    else
+      render json: { case: "error"}
+    end
+  end
+
   private
 
   def order_params
     params.require(:order).permit(:notes, :room_id, :user_id)
   end
-
+  # def order_status_param
+  #   params.require(:order).permit(:status)
+  # end
 end

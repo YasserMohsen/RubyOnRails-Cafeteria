@@ -1,4 +1,4 @@
-<div class="ui fluid card">
+<div class="ui fluid card" id="dashboard_order_<%= order.id %>">
   <div class="content">
     <table class="ui fluid celled red table">
       <thead>
@@ -35,10 +35,13 @@
           <%= order.user.ext %>
         </td>
         <td>
-          <button class="ui
-                <% if order.status == 'received' %> red <% else %> green <% end %>
-                large button fluid">
-            <% if order.status == 'received' %> Start <% else %> Finish <% end %>
+          <button id="dashboard_order_button_<%= order.id %>"
+                  class="ui
+                    <% if order.status == 'received' %> red <% elsif order.status == 'processing' %> green <% end %>
+                    large button fluid dashboard_order_button"
+                  data-id="<%= order.id %>"
+                  data-status="<%= order.status %>">
+            <% if order.status == 'received' %> Start <% elsif order.status == 'processing' %> Finish <% end %>
           </button>
         </td>
       </tr>
@@ -47,7 +50,7 @@
   </div>
   <div class="content">
     <div class="ui five column grid stackable doubling">
-      <%= render partial: "product", order: order, collection: order.products, locals: {:order => order} %>
+      <%= render partial: "product", collection: order.products, locals: {:order => order} %>
     </div>
   </div>
   <div class="extra content">
