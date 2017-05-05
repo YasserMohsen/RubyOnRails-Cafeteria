@@ -5,6 +5,7 @@ class Order < ApplicationRecord
   has_many :products, through: :order_products
 
   after_update_commit { UserOrdersJob.perform_later self }
+  after_create_commit { DashboardJob.perform_later self, "create" }
 
   after_initialize :set_defaults, unless: :persisted?
 

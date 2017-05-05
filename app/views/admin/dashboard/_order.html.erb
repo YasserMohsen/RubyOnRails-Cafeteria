@@ -1,0 +1,58 @@
+<div class="ui fluid card">
+  <div class="content">
+    <table class="ui fluid celled red table">
+      <thead>
+      <tr>
+        <th class="three wide ui header center aligned">
+          Order Date
+        </th>
+        <th class="three wide ui header center aligned">
+          Name
+        </th>
+        <th class="two wide ui header center aligned">
+          Room
+        </th>
+        <th class="two wide ui header center aligned">
+          Ext.
+        </th>
+        <th class="four wide ui header center aligned">
+          Action
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="ui header">
+          <%= order.created_at %>
+        </td>
+        <td>
+          <%= order.user.name %>
+        </td>
+        <td>
+          <%= order.room.name %>
+        </td>
+        <td>
+          <%= order.user.ext %>
+        </td>
+        <td>
+          <button class="ui
+                <% if order.status == 'received' %> red <% else %> green <% end %>
+                large button fluid">
+            <% if order.status == 'received' %> Start <% else %> Finish <% end %>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="content">
+    <div class="ui five column grid stackable doubling">
+      <%= render partial: "product", order: order, collection: order.products, locals: {:order => order} %>
+    </div>
+  </div>
+  <div class="extra content">
+    <span class="ui header right floated">
+      Total Cost: <%= order.get_total %>
+    </span>
+  </div>
+</div>
