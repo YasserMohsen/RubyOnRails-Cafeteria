@@ -2,26 +2,67 @@
   Checks
 </h1>
 
-<table class="ui table fluid accordion">
+<table class="ui table accordion">
   <thead>
-    <tr>
-      <th>Name</th>
-      <th>Total Amount</th>
-    </tr>
+  <tr>
+    <th>Name</th>
+    <th>Total Amount</th>
+  </tr>
   </thead>
-  <% if @users.each do |user| %>
-  <tbody class="ui title">
-    <tr>
-      <td><i class="dropdown icon"></i> <%= user.name %></td>
-      <td>2</td>
-    </tr>
-  </tbody>
-  <tbody class="ui content">
-    <tr>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-  </tbody>
+  <% if @data.each do |user_id, data| %>
+      <tbody class="ui title">
+      <tr>
+        <td><i class="dropdown icon"></i> <%= data[:user].name %></td>
+        <td>EGP <%= data[:total] %></td>
+      </tr>
+      </tbody>
+      <tbody class="ui content">
+      <tr>
+        <td colspan="2">
+          <table class="ui very basic table">
+            <thead>
+            <tr>
+              <th>Order Date</th>
+              <th>Amount</th>
+            </tr>
+            </thead>
+            <% if data[:orders].each do |order_id, order| %>
+                <tbody class="ui title">
+                <tr>
+                  <td><i class="dropdown icon"></i> <%= order.created_at %></td>
+                  <td>EGP <%= order.get_total %></td>
+                </tr>
+                </tbody>
+                <tbody class="ui content">
+                <tr>
+                  <td colspan="2">
+                    <div class="ui eight column stackable internally celled grid">
+                      <% order.products.each do |product| %>
+                          <div class="column">
+                            <div class="ui card">
+                              <div class="image">
+                                <%= image_tag product.picture.url(:thumb), :class => "ui mini image" %>
+                              </div>
+                              <div class="content">
+                                <div class="right floated meta"><%= product.price %></div>
+                                <%= product.name %>
+                              </div>
+                            </div>
+                          </div>
+                      <% end %>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+            <% end.empty? %>
+                <tr>
+                  <td colspan="2"><strong>Nothing to show right now!!</strong></td>
+                </tr>
+            <% end %>
+          </table>
+        </td>
+      </tr>
+      </tbody>
   <% end.empty? %>
       <tr>
         <td colspan="2"><strong>Nothing to show right now!!</strong></td>

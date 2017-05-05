@@ -18,4 +18,8 @@ class Order < ApplicationRecord
     self.products.sum("amount * price").inspect
   end
 
+  def get_products
+    self.products
+  end
+
 end
