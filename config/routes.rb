@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'checks/index'
 
   devise_for :users, only: :sessions
 

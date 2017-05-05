@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
 
     @costs=Hash.new
     @products=Hash.new
+    @prodamounts=Hash.new
     @sum=0
     Array(@orders).each do |order|
         total=0
@@ -12,6 +13,9 @@ class OrdersController < ApplicationController
         prods=order.get_products
         @costs[order.id]=total
         @products[order.id]=prods
+        @prodamounts[order.id]=order.get_amounts
+        total=total.to_f
+        @sum+=total
     end
 
 

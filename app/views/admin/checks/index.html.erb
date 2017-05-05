@@ -1,6 +1,21 @@
 <h1>
   Checks
 </h1>
+<%= form_for(:filter,url: admin_checks_path,:method => :get, :html => {:class => "ui mini form", :multipart => true}) do |f| %>
+
+<div class="ui form">
+  <div class="inline fields">
+    <div class="field">
+      <label>By</label>
+      <div class="ui mini input">
+        <%= f.collection_select(:user, User.all, :id, :name, include_blank: 'All') %>
+      </div>
+    </div>
+    <button class="ui mini button" type="submit">Submit</button>
+  </div>
+</div>
+
+<% end %>
 
 <table class="ui table accordion">
   <thead>
@@ -9,10 +24,10 @@
     <th>Total Amount</th>
   </tr>
   </thead>
-  <% if @data.each do |user_id, data| %>
+  <% if @data.each do |username, data| %>
       <tbody class="ui title">
       <tr>
-        <td><i class="dropdown icon"></i> <%= data[:user].name %></td>
+        <td><i class="dropdown icon"></i> <%= username %></td>
         <td>EGP <%= data[:total] %></td>
       </tr>
       </tbody>
