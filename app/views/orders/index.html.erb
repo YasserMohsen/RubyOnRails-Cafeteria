@@ -1,77 +1,78 @@
-
 <h2 class="ui header">
   <i class="in cart icon"></i>
   <div class="content">
     My Orders
   </div>
-    <!-- <div class="sub header">Choose what you want, then click checkout</div>
-  </div> -->
+  <!-- <div class="sub header">Choose what you want, then click checkout</div>
+</div> -->
 
 </h2>
 
 <table class="ui table accordion">
   <thead>
-    <tr><th>Order Date</th>
-    <th>Status</th>
-    <th>Amount</th>
-    <th>Action</th>
-  </tr></thead>
-      <%for order in @orders%>
-  <tbody class="ui title">
     <tr>
-      <td>
-          <i class="dropdown icon"></i>
-          <%=order.created_at%></td>
-          <td id="orderstatus<%=order.id%>"><%=order.status%></td>
-          <td><%=@costs[order.id]%> EGP</td>
+      <th>Order Date</th>
+      <th>Status</th>
+      <th>Amount</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <% for order in @orders %>
+      <tbody class="ui title">
+        <tr>
           <td>
-            <%if order.status=="received" %>
-            <%= link_to order_path(order.id), method: :delete, class: "ui blue button", id: "cancelbtn"+order.id.to_s do %>
-                Cancel
-                <%end%>
+            <i class="dropdown icon"></i>
+            <%= order.created_at.strftime("%d %b %Y - %I:%M %p") %>
+          </td>
+          <td id="orderstatus<%= order.id %>"><%= order.status %></td>
+          <td><%= @costs[order.id] %> EGP</td>
+          <td>
+            <% if order.status=="received" %>
+                <%= link_to order_path(order.id), method: :delete, class: "ui blue button", id: "cancelbtn"+order.id.to_s do %>
+                    Cancel
+                <% end %>
             <% end %>
           </td>
         </tr>
       </tbody>
       <tbody class="ui content">
-        <tr>
-          <td>
-            <%i=0%>
-            <div class="ui card">
-              <div class="content">
-                <div class="ui equal width grid">
-            <%for product in @products[order.id]%>
+      <tr>
+        <td colspan="4">
+          <% i=0 %>
+          <div class="ui six column stackable internally celled grid">
+            <% for product in @products[order.id] %>
             <div class="column">
-                <%= product.price %>LE
-                <br>
-          <%= image_tag product.picture.url(:thumb), :class => "ui avatar image" %>
-                    <br>
-          <%= product.name %>
-               <br>
-                <%= @prodamounts[order.id][i] %>
-                <%i+=1%>
+              <div class="ui card">
+                <div class="image">
+                  <%= image_tag product.picture.url(:thumb), :class => "ui mini image" %>
                 </div>
-          <%end%>
-          </div>
-        </div>
+                <div class="content">
+                  <div class="right floated meta"><%= product.price %></div>
+                  <%= product.name %>
+                </div>
+              </div>
+              <% i+=1 %>
+            </div>
+            <% end %>
           </div>
         </td>
-    </tr>
+      </tr>
 
-  </tbody>
+      </tbody>
 
-  <%end%>
+  <% end %>
 </table>
 
 <div class="item">
-<div class="right floated item">
-Total: <%=@sum%>
-</div></div>
+  <div class="right floated item">
+    Total: <%= @sum %>
+  </div>
+</div>
 
 
 <script type="text/javascript">
-    $(function(){
+    $(function () {
         $('.ui.accordion')
-          .accordion();
+            .accordion();
     })
 </script>
