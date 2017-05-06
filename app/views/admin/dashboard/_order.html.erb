@@ -29,10 +29,10 @@
           <i class="user icon"></i> <%= order.user.name %>
         </td>
         <td>
-          <i class="location icon"></i> <%= order.room.name %>
+          <i class="map icon"></i> <%= order.room.name %>
         </td>
         <td>
-          <%= order.user.ext %>
+          <i class="text telephone icon"></i> <%= order.user.ext %>
         </td>
         <td>
           <button id="dashboard_order_button_<%= order.id %>"
@@ -53,13 +53,13 @@
     </table>
   </div>
   <div class="content">
-    <div class="ui five column grid stackable doubling">
+    <div class="ui six column grid stackable doubling">
       <%= render partial: "product", collection: order.products, locals: {:order => order} %>
     </div>
   </div>
   <div class="extra content">
     <span class="ui header right floated">
-      Total Cost: <%= order.get_total %>
+      Total Cost: EGP <%= order.get_total %>
     </span>
     <% if order.notes != "" %>
       <div class="ui header red">Notes:</div>
