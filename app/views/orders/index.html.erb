@@ -3,6 +3,7 @@
   <i class="in cart icon"></i>
   <div class="content">
     My Orders
+  </div>
     <!-- <div class="sub header">Choose what you want, then click checkout</div>
   </div> -->
 
@@ -25,7 +26,7 @@
           <td><%=@costs[order.id]%> EGP</td>
           <td>
             <%if order.status=="received" %>
-            <%= link_to order_path(order.id), method: :delete, class: "ui blue button", id: "cancelbtn" do %>
+            <%= link_to order_path(order.id), method: :delete, class: "ui blue button", id: "cancelbtn"+order.id.to_s do %>
                 Cancel
                 <%end%>
             <% end %>

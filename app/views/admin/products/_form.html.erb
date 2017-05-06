@@ -9,7 +9,7 @@
 
     <div class="field">
       <%= f.label :price %>
-      <%= f.text_field :price %>
+      <%= f.text_field :name %>
     </div>
 
     <div class="field">
@@ -23,7 +23,7 @@
 
     <div class="inline field">
       <div class="ui toggle checkbox">
-        <%= f.check_box(:availability) %>
+        <%= f.check_box :availability, { checked: true } %>
         <%= f.label(:availability, "Available?") %>
       </div>
     </div>
