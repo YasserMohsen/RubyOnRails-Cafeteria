@@ -3,33 +3,33 @@
     <table class="ui fluid celled red table">
       <thead>
       <tr>
-        <th class="three wide ui header center aligned">
+        <th class="three wide ui header">
           Order Date
         </th>
-        <th class="three wide ui header center aligned">
+        <th class="three wide ui header">
           Name
         </th>
-        <th class="two wide ui header center aligned">
+        <th class="two wide ui header">
           Room
         </th>
-        <th class="two wide ui header center aligned">
+        <th class="two wide ui header">
           Ext.
         </th>
-        <th class="four wide ui header center aligned">
+        <th class="four wide ui header">
           Action
         </th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <td class="ui header">
-          <%= order.created_at %>
+        <td class="">
+          <i class="time icon"></i> <%= time_ago_in_words(order.created_at) %>
         </td>
         <td>
-          <%= order.user.name %>
+          <i class="user icon"></i> <%= order.user.name %>
         </td>
         <td>
-          <%= order.room.name %>
+          <i class="location icon"></i> <%= order.room.name %>
         </td>
         <td>
           <%= order.user.ext %>
@@ -37,11 +37,15 @@
         <td>
           <button id="dashboard_order_button_<%= order.id %>"
                   class="ui
-                    <% if order.status == 'received' %> red <% elsif order.status == 'processing' %> green <% end %>
+                    <% if order.status == 'received' %> red
+                    <% elsif order.status == 'processing' %> green
+                    <% end %>
                     large button fluid dashboard_order_button"
                   data-id="<%= order.id %>"
                   data-status="<%= order.status %>">
-            <% if order.status == 'received' %> Start <% elsif order.status == 'processing' %> Finish <% end %>
+            <% if order.status == 'received' %> Start
+            <% elsif order.status == 'processing' %> Finish
+            <% end %>
           </button>
         </td>
       </tr>
