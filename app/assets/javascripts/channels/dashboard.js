@@ -18,7 +18,7 @@ App.dashboard = App.cable.subscriptions.create("DashboardChannel", {
 
 $(function () {
     $(".dashboard_order_button").click(function () {
-        var my_order = $(this)
+        var my_order = $(this);
         var statuses = ["received", "processing", "out for delivery"]
         var i = statuses.indexOf(my_order.data("status"))
         if(i >= 0) {

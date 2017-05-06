@@ -1,10 +1,9 @@
 <div class="column">
   <div class="ui card">
+
     <div class="content">
-      <div class="right floated">
-        <strong>
-          <%= OrderProduct.where(order_id: order.id, product_id: product.id).first.amount %>
-        </strong>
+      <div class="right floated meta">
+        <span class="ui red small basic label"><%= OrderProduct.where(order_id: order.id, product_id: product.id).first.amount %></span>
       </div>
       <strong><%= product.name %></strong>
     </div>

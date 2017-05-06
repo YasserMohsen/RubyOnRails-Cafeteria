@@ -67,12 +67,13 @@ var cart = new Cart();
 
 App.product = App.cable.subscriptions.create("ProductChannel", {
     connected: function () {
-        console.log("connected")
+        console.log("ProductChannel connected")
     },
     disconnected: function () {
-        console.log("disconnected")
+        console.log("ProductChannel disconnected")
     },
     received: function (data) {
+        console.log("ProductChannel received")
         if (data.action === "create") {
             $("#category_" + data.product.category_id).append(data.html);
         } else if (data.action === "update") {
