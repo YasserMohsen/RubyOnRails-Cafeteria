@@ -23,7 +23,7 @@
       <tbody>
       <tr>
         <td class="">
-          <i class="time icon"></i> <%= time_ago_in_words(order.created_at) %>
+          <i class="time icon"></i> <%= order.created_at.strftime("%I:%M%p") %>
         </td>
         <td>
           <i class="user icon"></i> <%= order.user.name %>
@@ -54,7 +54,7 @@
   </div>
   <div class="content">
     <div class="ui six column grid stackable doubling">
-      <%= render partial: "product", collection: order.products, locals: {:order => order} %>
+      <%= render partial: "admin/dashboard/product", collection: order.products, locals: {:order => order} %>
     </div>
   </div>
   <div class="extra content">
@@ -62,8 +62,8 @@
       Total Cost: EGP <%= order.get_total %>
     </span>
     <% if order.notes != "" %>
-      <div class="ui header red">Notes:</div>
-      <div class="header"><%= order.notes %></div>
+        <div class="ui header red">Notes:</div>
+        <div class="header"><%= order.notes %></div>
     <% end %>
   </div>
 </div>

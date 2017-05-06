@@ -6,6 +6,7 @@ class Order < ApplicationRecord
 
   after_update_commit { UserOrdersJob.perform_later self }
   after_create_commit { DashboardJob.perform_later self, "create" }
+  before_destroy {DashboardJob.perform_later self, "destroy"}
 
   after_initialize :set_defaults, unless: :persisted?
 

@@ -3,7 +3,9 @@ class DashboardJob < ApplicationJob
 
   def perform(order, action)
     response = {action: action, order: order}
-    response[:html] = render_order(order)
+    unless action == "destroy"
+      response[:html] = render_order(order)
+    end
     ActionCable.server.broadcast 'dashboard_channel', response
   end
 
