@@ -8,7 +8,10 @@ class Product < ApplicationRecord
 
   has_attached_file :picture,
                     styles: {thumb: ["64x64#", :png]},
-                    default_url: 'default-image-:style.png'
+                    :storage => :cloudinary,
+                    :path => ':id/:style/:filename',
+                    :cloudinary_credentials => Rails.root.join("config/cloudinary.yml"),
+                    :cloudinary_resource_type => :image
   validates_attachment :picture, presence: true,
                        content_type: {content_type: ["image/jpeg", "image/gif", "image/png"]},
                        size: {in: 0..500.kilobytes}

@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: yasser
+  api_key: '733622662312853'
+  api_secret: eWbGg1EM5X_X7KuY-R9G2N3MkFY
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: yasser
+  api_key: '733622662312853'
+  api_secret: eWbGg1EM5X_X7KuY-R9G2N3MkFY
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: yasser
+  api_key: '733622662312853'
+  api_secret: eWbGg1EM5X_X7KuY-R9G2N3MkFY
+  enhance_image_tag: true
+  static_image_support: false

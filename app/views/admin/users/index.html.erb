@@ -19,7 +19,7 @@
   <tbody>
   <% if @users.each do |user| %>
       <tr>
-        <td><%= image_tag user.avatar.url(:thumb) %></td>
+        <td><%= image_tag user.avatar.url(:thumb), :class => "ui circular image" %></td>
         <td><strong><%= user.name %></strong></td>
         <td><strong><%= user.room.name %></strong></td>
         <td><strong><%= user.ext %></strong></td>
