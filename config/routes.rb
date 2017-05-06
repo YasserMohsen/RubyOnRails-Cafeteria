@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :products, except: :show
     resources :categories, except: :show
     resources :rooms, except: :show
+    resources :orders, only: [:new, :create]
   end
 
   mount ActionCable.server => '/cable'

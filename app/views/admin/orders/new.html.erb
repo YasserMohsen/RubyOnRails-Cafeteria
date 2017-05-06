@@ -1,7 +1,7 @@
 <h2 class="ui header">
   <i class="in cart icon"></i>
   <div class="content">
-    New Order
+    Manual Order
     <div class="sub header">Choose what you want, then click checkout</div>
   </div>
 </h2>
@@ -9,7 +9,7 @@
 <div class="ui internally celled grid">
   <div class="row">
     <div class="six wide column">
-      <%= render partial: "orders/cart", locals: {model: @order,users_list: false} %>
+      <%= render partial: "orders/cart", locals: {model: [:admin, @order],users_list: true} %>
     </div>
     <div class="ten wide column">
       <%= render partial: "orders/products_list" %>

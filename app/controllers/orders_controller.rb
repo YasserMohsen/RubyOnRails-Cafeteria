@@ -67,9 +67,7 @@ class OrdersController < ApplicationController
 
   private
 
-
-
   def order_params
-    params.require(:order).permit(:notes, :room_id, :user_id)
+    params.require(:order).permit(:notes, :room_id)
   end
 end
