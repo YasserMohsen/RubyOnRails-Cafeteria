@@ -37,6 +37,10 @@
         <i class="icon block layout"></i> Dashboard
     <% end %>
 
+    <%= link_to new_admin_order_path, class: "item" do %>
+        <i class="icon in cart"></i> Manual Order
+    <% end %>
+
     <%= link_to admin_checks_path, class: "item" do %>
         <i class="icon calendar"></i> Checks
     <% end %>
@@ -93,6 +97,7 @@
         $('.ui.dropdown').dropdown();
         $('.ui.checkbox').checkbox();
         $('.ui.accordion').accordion();
+        $('.menu .item').tab();
     });
 </script>
 

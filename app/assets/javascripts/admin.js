@@ -16,3 +16,4 @@
 //= require semantic-ui
 //= require cable
 //= require ./channels/dashboard
+//= require ./channels/product

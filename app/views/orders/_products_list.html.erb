@@ -1,0 +1,20 @@
+<div class="ui pointing secondary menu">
+  <% @categories.each.with_index do |category, index| %>
+      <a class="item
+              <% if index == 0 %>active
+              <% end %>" data-tab="<%= category.id %>"><%= category.name %></a>
+  <% end %>
+</div>
+<% @categories.each.with_index do |category, index| %>
+    <div class="ui bottom attached
+            <% if index == 0 %>active
+            <% end %> tab" data-tab="<%= category.id %>">
+
+      <div class="ui four column stackable internally celled grid">
+        <div id="category_<%= category.id %>" class="row">
+          <%= render partial: "orders/product", collection: category.products.where(availability:1) %>
+        </div>
+      </div>
+
+    </div>
+<% end %>
