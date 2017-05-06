@@ -2,6 +2,9 @@ class ProductBroadcastJob < ApplicationJob
   queue_as :default
 
   def perform(product, action)
+    if action == "create" && product.availability == false
+      return
+    end
     response = {action: action, product: product}
     unless action == "destroy"
       response[:html] = render_product(product)

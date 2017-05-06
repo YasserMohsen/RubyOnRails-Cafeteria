@@ -4,6 +4,12 @@ var refreshData = function () {
     $("#total").text(this.getTotal())
 };
 
+var removeElement = function (target) {
+    target.animate({opacity: 0},500, function () {
+        target.remove();
+    });
+};
+
 var Cart = function () {
     this.list = {}
 };
@@ -65,6 +71,8 @@ Cart.prototype.render = function () {
 
 var cart = new Cart();
 
+
+
 App.product = App.cable.subscriptions.create("ProductChannel", {
     connected: function () {
         console.log("ProductChannel connected")
@@ -75,17 +83,25 @@ App.product = App.cable.subscriptions.create("ProductChannel", {
     received: function (data) {
         console.log("ProductChannel received")
         if (data.action === "create") {
-            $("#category_" + data.product.category_id).append(data.html);
+            //if (data.product.availability === true) {
+                $("#category_" + data.product.category_id).append(data.html);
+            //}
         } else if (data.action === "update") {
             if (data.product.availability === false) {
-                $("#product_" + data.product.id).remove();
+                $target = $("#product_" + data.product.id);
+                removeElement($target);
                 cart.remove(data.product.id,refreshData);
             } else {
-                $("#product_" + data.product.id).replaceWith(data.html);
+                $target = $("#product_" + data.product.id);
+                if ($target.length) {
+                    removeElement($target);
+                }
+                $("#category_" + data.product.category_id).append(data.html)
                 cart.update(data.product.id,data.product,refreshData);
             }
         } else if (data.action === "destroy") {
-            $("#product_" + data.product.id).remove();
+            $target = $("#product_" + data.product.id);
+            removeElement($target);
             cart.remove(data.product.id,refreshData);
         }
     }

@@ -8,12 +8,12 @@
 <table class="ui table">
   <thead>
   <tr>
-    <th>Image</th>
-    <th>Name</th>
-    <th>Price</th>
-    <th>Availability</th>
-    <th>Category</th>
-    <th>Options</th>
+    <th class="two wide column">Image</th>
+    <th class="three wide column">Name</th>
+    <th class="two wide column">Price</th>
+    <th class="two wide column">Availability</th>
+    <th class="two wide column">Category</th>
+    <th class="three wide column">Options</th>
   </tr>
   </thead>
 
@@ -22,7 +22,7 @@
       <tr>
         <td>
           <% if product.picture %>
-              <%= image_tag product.picture.url(:thumb),:class => "ui mini image" %>
+              <%= image_tag product.picture.url(:thumb), :class => "ui mini image" %>
           <% end %>
         </td>
         <td>
@@ -33,7 +33,9 @@
         </td>
         <td>
           <div class="ui toggle checkbox">
-            <input class="checkbox_input" id="checkbox_<%= product.id %>" name="availability" type="checkbox" <% if product.availability %> checked <% end %>/>
+            <input data-id="<%= product.id %>" class="availability_checkbox" name="availability" type="checkbox"
+                   <% if product.availability %> checked
+                   <% end %> />
           </div>
         </td>
         <td>
@@ -60,29 +62,19 @@
   </tbody>
 </table>
 <script type="text/javascript">
-$(function(){
-  $('.checkbox_input').change(function(){
-      var product_availability = 0
-      if(this.checked){
-          product_availability = 1
-      }
-      var product_id = this.id.split("_")[1]
-      console.log("my id: "+product_id)
-      product_data = {
-            availability: product_availability
-
-      }
-      console.log(product_data)
-      $.ajax({
-          contentType: "application/json",
-          type: "PUT",
-          url: "/admin/products/" + product_id,
-//          data: {"product":{"availability":"0"}},
-          date: JSON.stringify(product_data),
-          success: function (data) {
-              console.log(data)
-          }
-      })
-  });
-})
+    $(function () {
+        $('.availability_checkbox').on("change", function () {
+            var id = $(this).data("id");
+            var availability = $(this).is(":checked");
+            $.ajax({
+                type: "PATCH",
+                dataType: "json",
+                url: "/admin/products/" + id,
+                data: {"product": {"availability": availability}},
+                success: function (data) {
+                    console.log(data)
+                }
+            })
+        });
+    })
 </script>

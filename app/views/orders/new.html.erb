@@ -60,7 +60,7 @@
 
             <div class="ui four column stackable internally celled grid">
               <div id="category_<%= category.id %>" class="row">
-                <%= render partial: "product", collection: category.products %>
+                <%= render partial: "product", collection: category.products.where(availability:1) %>
               </div>
             </div>
 

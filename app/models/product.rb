@@ -3,8 +3,9 @@ class Product < ApplicationRecord
   validates :price, presence: true
 
   belongs_to :category
-  has_many :order_products #, :dependent => destroy
+  has_many :order_products , :dependent => :destroy
   has_many :orders, through: :order_products
+
   has_attached_file :picture,
                     styles: {thumb: ["64x64#", :png]},
                     default_url: 'default-image-:style.png'

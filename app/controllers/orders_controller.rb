@@ -18,7 +18,6 @@ class OrdersController < ApplicationController
         @sum+=total
     end
 
-
   end
 
   def new
@@ -35,11 +34,6 @@ class OrdersController < ApplicationController
     end
 
     if !@order.errors.any?
-        # @order.save
-        # params[:order][:products].each do |product_id, amount|
-        #     @product = OrderProduct.new(order_id: @order.id, product_id: product_id, amount: amount)
-        #     @product.save!
-        #     end
         Order.transaction do
           @order.save!
           params[:order][:products].each do |product_id, amount|
@@ -70,7 +64,4 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:notes, :room_id, :user_id)
   end
-  # def order_status_param
-  #   params.require(:order).permit(:status)
-  # end
 end
