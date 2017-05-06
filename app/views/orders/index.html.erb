@@ -55,7 +55,7 @@
       </div>
 
       </td>
-      <td><%=order.status%></td>
+      <td id="orderstatus<%=order.id %>"><%=order.status%></td>
       <td><%=@costs[order.id]%> EGP</td>
       <td>
         <%if order.status=="processing" || order.status=="received" %>

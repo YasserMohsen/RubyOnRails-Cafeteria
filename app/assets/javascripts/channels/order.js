@@ -8,7 +8,8 @@ App.order = App.cable.subscriptions.create("OrderChannel", {
   },
 
   received: function(data) {
-     console.log(data)
+    $("#orderstatus"+ data.data.id).html(data.data.status);
+     console.log(data.data.status)
     // Called when there's incoming data on the websocket for this channel
   }
 });
