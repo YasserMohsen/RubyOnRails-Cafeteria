@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require semantic-ui
-//= require_tree .
+//= require cable
+//= require ./channels/dashboard
