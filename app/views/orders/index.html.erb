@@ -25,7 +25,7 @@
           <td><%=@costs[order.id]%> EGP</td>
           <td>
             <%if order.status=="received" %>
-            <%= link_to order_path(order.id), method: :delete, class: "ui blue button" do %>
+            <%= link_to order_path(order.id), method: :delete, class: "ui blue button", id: "cancelbtn" do %>
                 Cancel
                 <%end%>
             <% end %>
