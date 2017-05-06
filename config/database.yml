@@ -48,7 +48,7 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: RubyOnRails-Cafeteria
-  username: RubyOnRails-Cafeteria
-  password: <%= ENV['RUBYONRAILS-CAFETERIA_DATABASE_PASSWORD'] %>
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+  database: db/production.sqlite3
