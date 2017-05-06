@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, only: :sessions
 
   get 'orders/index'
-  resources :orders, only: [:index, :new, :create, :update]
+  resources :orders, only: [:index, :new, :create, :update, :destroy]
 
   root to: "orders#index"
 

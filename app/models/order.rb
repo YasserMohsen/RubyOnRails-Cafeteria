@@ -31,4 +31,6 @@ class Order < ApplicationRecord
     return amounts
   end
 
+
+
 end
