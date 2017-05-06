@@ -33,7 +33,7 @@
         </td>
         <td>
           <div class="ui toggle checkbox">
-            <input id="rr" name="availability" type="checkbox" <% if product.availability %> checked <% end %>/>
+            <input class="checkbox_input" id="checkbox_<%= product.id %>" name="availability" type="checkbox" <% if product.availability %> checked <% end %>/>
           </div>
         </td>
         <td>
@@ -61,10 +61,28 @@
 </table>
 <script type="text/javascript">
 $(function(){
-  $('#rr').checkbox({
-    onchange: function(){
-      console.log("ccc")
-    }
+  $('.checkbox_input').change(function(){
+      var product_availability = 0
+      if(this.checked){
+          product_availability = 1
+      }
+      var product_id = this.id.split("_")[1]
+      console.log("my id: "+product_id)
+      product_data = {
+            availability: product_availability
+
+      }
+      console.log(product_data)
+      $.ajax({
+          contentType: "application/json",
+          type: "PUT",
+          url: "/admin/products/" + product_id,
+//          data: {"product":{"availability":"0"}},
+          date: JSON.stringify(product_data),
+          success: function (data) {
+              console.log(data)
+          }
+      })
   });
 })
 </script>
