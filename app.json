@@ -1,0 +1,11 @@
+{
+  "name": "RubyOnRails-Cafeteria",
+  "description": "Interactive cafeteria system developed using ruby on rails",
+  "repository": "https://github.com/YasserMohsen/RubyOnRails-Cafeteria",
+  "keywords": ["Cafeteria"],
+  "success_url": "/",
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  },
+  "addons": ["heroku-redis"]
+}
