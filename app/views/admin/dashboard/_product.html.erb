@@ -1,7 +1,15 @@
 <div class="column">
-  <%= image_tag product.picture.url(), class: "ui fluid image" %>
-  <br/>
-  <h2 class="ui header center aligned">
-    <%= OrderProduct.where(order_id: order.id, product_id: product.id).first.amount %>
-  </h2>
+  <div class="ui card">
+    <div class="content">
+      <div class="right floated">
+        <strong>
+          <%= OrderProduct.where(order_id: order.id, product_id: product.id).first.amount %>
+        </strong>
+      </div>
+      <strong><%= product.name %></strong>
+    </div>
+    <div class="image">
+      <%= image_tag product.picture.url(:thumb), :class => "ui fluid image" %>
+    </div>
+  </div>
 </div>

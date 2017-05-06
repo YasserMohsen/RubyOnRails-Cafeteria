@@ -57,5 +57,9 @@
     <span class="ui header right floated">
       Total Cost: <%= order.get_total %>
     </span>
+    <% if order.notes != "" %>
+      <div class="ui header red">Notes:</div>
+      <div class="header"><%= order.notes %></div>
+    <% end %>
   </div>
 </div>
