@@ -48,7 +48,6 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: RubyOnRails-Cafeteria
-  username: RubyOnRails-Cafeteria
-  password: <%= ENV['RUBYONRAILS-CAFETERIA_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  url: <%= ENV['DATABASE_URL'] %>
