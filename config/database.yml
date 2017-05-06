@@ -48,7 +48,8 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
-  database: db/production.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: Cafeteria
+  username: Cafeteria
+  password: <%= ENV['CAFETERIA_DATABASE_PASSWORD'] %>
