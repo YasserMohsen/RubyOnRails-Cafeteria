@@ -50,6 +50,4 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: Cafeteria
-  username: Cafeteria
-  password: <%= ENV['CAFETERIA_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
