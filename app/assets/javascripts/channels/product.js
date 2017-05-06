@@ -14,6 +14,10 @@ var Cart = function () {
     this.list = {}
 };
 
+Cart.prototype.get = function (id) {
+    return (id in this.list) ? this.list[id] : {};
+};
+
 Cart.prototype.add = function (product,callback) {
     if (product.id in this.list) {
         this.list[product.id].quantity += 1;
@@ -28,18 +32,34 @@ Cart.prototype.add = function (product,callback) {
 Cart.prototype.update = function (id, new_product, callback) {
     if (id in this.list) {
         this.list[id].product = new_product;
+        if (callback && typeof(callback) === "function") {
+            callback.call(this);
+        }
     }
-    if (callback && typeof(callback) === "function") {
-        callback.call(this);
+};
+
+Cart.prototype.updateQuantity = function (id, action, callback) {
+    if (id in this.list) {
+        if (action === 'inc') {
+            this.list[id].quantity += 1;
+        }else if  (action === 'dec') {
+            this.list[id].quantity -= 1;
+            if (this.list[id].quantity < 1) {
+                this.list[id].quantity = 1;
+            }
+        }
+        if (callback && typeof(callback) === "function") {
+            callback.call(this);
+        }
     }
 };
 
 Cart.prototype.remove = function (id,callback) {
     if (id in this.list) {
         delete this.list[id];
-    }
-    if (callback && typeof(callback) === "function") {
-        callback.call(this);
+        if (callback && typeof(callback) === "function") {
+            callback.call(this);
+        }
     }
 };
 
@@ -60,7 +80,7 @@ Cart.prototype.render = function () {
             var hidden = "<input type='hidden' name='order[products][" + product +"]' value='" + this.list[product].quantity + "' />";
             html += "<tr>";
             html += "<td>" + this.list[product].product.name + "</td>";
-            html += "<td>" + this.list[product].quantity + "</td>";
+            html += "<td><i data-id='" + product +"' data-action='dec' class='minus red icon change-quantity'></i> <span class='ui circular label'>" + this.list[product].quantity + "</span> <i data-id='" + product +"' data-action='inc' class='plus green icon change-quantity'></i></td>";
             html += "<td>" + this.list[product].product.price + "</td>";
             html += "<td><i data-id='" + product +"' class='large remove red icon remove_line'></i> " + hidden + "</td>";
             html += "</tr>";
@@ -122,5 +142,10 @@ $(document).ready(function () {
     $(document).on('click','.remove_line',function () {
         var product_id = $(this).data("id");
         cart.remove(product_id,refreshData);
+    });
+    $(document).on("click",".change-quantity",function () {
+        var action = $(this).data("action");
+        var id = $(this).data("id");
+        cart.updateQuantity(id,action,refreshData);
     })
 });
